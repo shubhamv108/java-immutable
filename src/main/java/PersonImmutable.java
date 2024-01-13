@@ -46,6 +46,7 @@ public final class PersonImmutable {
     public String toString() {
         return "PersonImmutable[" +
                 "name=" + name + ", " +
-                "info=" + info + ']';
+                "info=" + info + ", " +
+                "address=" + address + ']';
     }
 }

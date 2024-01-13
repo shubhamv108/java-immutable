@@ -25,6 +25,7 @@ class PersonImmutableTest {
 
         this.info.put("TestKey", "TestValue");
         Assertions.assertFalse(this.person.getInfo().equals(this.info));
+
         Assertions.assertFalse(this.person.getAddress() == this.address);
         Assertions.assertTrue(this.person.getAddress().equals(this.address));
     }

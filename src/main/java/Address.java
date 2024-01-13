@@ -24,4 +24,11 @@ public class Address {
     public int hashCode() {
         return Objects.hash(line);
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "line='" + line + '\'' +
+                '}';
+    }
 }

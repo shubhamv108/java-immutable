@@ -23,6 +23,9 @@ class PersonRecordTest {
 
         this.info.put("TestKey", "TestValue");
         Assertions.assertFalse(this.person.info().equals(this.info));
+
+        Assertions.assertFalse(this.person.address() == this.address);
+        Assertions.assertTrue(this.person.address().equals(this.address));
     }
 
     @Test
@@ -44,6 +47,9 @@ class PersonRecordTest {
         this.info.put("TestKey", "TestValue");
         Assertions.assertFalse(this.info == this.person.info());
         Assertions.assertFalse(this.info.equals(this.person.info()));
+
+        Assertions.assertFalse(this.person.address() == this.address);
+        Assertions.assertTrue(this.person.address().equals(this.address));
     }
 
     @Test
