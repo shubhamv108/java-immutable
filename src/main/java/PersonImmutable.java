@@ -6,9 +6,12 @@ public final class PersonImmutable {
     private final String name;
     private final HashMap<String, String> info;
 
-    public PersonImmutable(String name, HashMap<String, String> info) {
+    private final Address address;
+
+    public PersonImmutable(final String name, final HashMap<String, String> info, final Address address) {
         this.name = name; // String is immutable for security & concurrency.
         this.info = new HashMap<>(info);
+        this.address = address.clone();
     }
 
     public String getName() {
@@ -17,6 +20,10 @@ public final class PersonImmutable {
 
     public HashMap<String, String> getInfo() {
         return new HashMap<>(info);
+    }
+
+    public Address getAddress() {
+        return this.address.clone();
     }
 
     @Override

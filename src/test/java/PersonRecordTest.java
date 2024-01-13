@@ -8,11 +8,13 @@ class PersonRecordTest {
 
     private PersonRecord person;
     private HashMap<String, String> info;
+    private Address address;
 
     @BeforeEach
     void setUp() {
         this.info = this.getNewInfo();
-        this.person = new PersonRecord("shubham", info);
+        this.address = new Address("line");
+        this.person = new PersonRecord("shubham", info, this.address);
     }
 
     @Test
@@ -46,27 +48,27 @@ class PersonRecordTest {
 
     @Test
     void test_equals() {
-        PersonRecord personRecord = new PersonRecord("shubham", this.getNewInfo());
+        PersonRecord personRecord = new PersonRecord("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.equals(personRecord));
 
         this.info.put("TestKey", "TestValue");
-        personRecord = new PersonRecord("shubham", this.getNewInfo());
+        personRecord = new PersonRecord("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.equals(personRecord));
     }
 
     @Test
     void test_hashCode() {
-        PersonRecord personRecord = new PersonRecord("shubham", this.getNewInfo());
+        PersonRecord personRecord = new PersonRecord("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.hashCode() == personRecord.hashCode());
 
         this.info.put("TestKey", "TestValue");
-        personRecord = new PersonRecord("shubham", this.getNewInfo());
+        personRecord = new PersonRecord("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.hashCode() == personRecord.hashCode());
     }
 
     @Test
     void test_toString() {
-        PersonRecord personRecord = new PersonRecord("shubham", this.getNewInfo());
+        PersonRecord personRecord = new PersonRecord("shubham", this.getNewInfo(), this.address);
         System.out.println(this.person.toString());
         Assertions.assertFalse(this.person.toString() == personRecord.toString());
         Assertions.assertTrue(this.person.toString().equals(personRecord.toString()));

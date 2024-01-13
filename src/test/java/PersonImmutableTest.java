@@ -10,11 +10,13 @@ class PersonImmutableTest {
 
     private PersonImmutable person;
     private HashMap<String, String> info;
+    private Address address;
 
     @BeforeEach
     void setUp() {
         this.info = this.getNewInfo();
-        this.person = new PersonImmutable("shubham", info);
+        this.address = new Address("line");
+        this.person = new PersonImmutable("shubham", info, this.address);
     }
 
     @Test
@@ -23,6 +25,8 @@ class PersonImmutableTest {
 
         this.info.put("TestKey", "TestValue");
         Assertions.assertFalse(this.person.getInfo().equals(this.info));
+        Assertions.assertFalse(this.person.getAddress() == this.address);
+        Assertions.assertTrue(this.person.getAddress().equals(this.address));
     }
 
     @Test
@@ -45,31 +49,34 @@ class PersonImmutableTest {
         this.info.put("TestKey", "TestValue");
         Assertions.assertFalse(this.info == this.person.getInfo());
         Assertions.assertFalse(this.info.equals(this.person.getInfo()));
+
+        Assertions.assertFalse(this.person.getAddress() == this.address);
+        Assertions.assertTrue(this.person.getAddress().equals(this.address));
     }
 
     @Test
     void test_equals() {
-        PersonImmutable personImmutable = new PersonImmutable("shubham", this.getNewInfo());
+        PersonImmutable personImmutable = new PersonImmutable("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.equals(personImmutable));
 
         this.info.put("TestKey", "TestValue");
-        personImmutable = new PersonImmutable("shubham", this.getNewInfo());
+        personImmutable = new PersonImmutable("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.equals(personImmutable));
     }
 
     @Test
     void test_hashCode() {
-        PersonImmutable personImmutable = new PersonImmutable("shubham", this.getNewInfo());
+        PersonImmutable personImmutable = new PersonImmutable("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.hashCode() == personImmutable.hashCode());
 
         this.info.put("TestKey", "TestValue");
-        personImmutable = new PersonImmutable("shubham", this.getNewInfo());
+        personImmutable = new PersonImmutable("shubham", this.getNewInfo(), this.address);
         Assertions.assertTrue(this.person.hashCode() == personImmutable.hashCode());
     }
 
     @Test
     void test_toString() {
-        PersonImmutable personImmutable = new PersonImmutable("shubham", this.getNewInfo());
+        PersonImmutable personImmutable = new PersonImmutable("shubham", this.getNewInfo(), new Address("line"));
         System.out.println(this.person.toString());
         Assertions.assertFalse(this.person.toString() == personImmutable.toString());
         Assertions.assertTrue(this.person.toString().equals(personImmutable.toString()));
